@@ -38,7 +38,7 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>C:\uafix\hangupfix.bat</Command>
+      <Command>C:\uafix\dnsreset.bat</Command>
     </Exec>
   </Actions>
 </Task>
