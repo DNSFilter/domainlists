@@ -1,9 +1,9 @@
 @ECHO OFF
-REM Version 0.1
-REM Created by Joshua Lamb on 11SEP18
+REM Version 0.2
+REM Created by Joshua Lamb on 12SEP18
 
 SETLOCAL EnableDelayedExpansion
-TITLE DNSFilter Agent Hang Fix
+TITLE DNS Agent Hang Fix
 CLS
 
 GOTO CHECK_PERMISSIONS
