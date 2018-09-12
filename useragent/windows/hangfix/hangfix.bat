@@ -20,34 +20,20 @@ IF %errorLevel% == 0 (
     GOTO :EOF
 )
 
-
 :FIX
 
 REM Set variables
 SET workdir=C:\uafix
-SET schedfile=%workdir%\dnsreset.bat
 IF not exist %workdir% mkdir %workdir%
-
-
-REM Query and write startup task for Retail
-SC QUERY "DNSFilter Agent" >nul 2>&1
-IF %errorlevel%==0 (
-    SC STOP "DNSFilter Agent"
-    REG ADD "HKLM\System\CurrentControlSet\services\DNSFilter Agent" /v Start /t REG_DWORD /d 3 /f
-    SCHTASKS /Create /RU "SYSTEM" /TN startagent /TR "SC START \"DNSFilter Agent\"" /SC onlogon
-)
-
-REM Query and write startup task for MSP
-SC QUERY "DNS Agent" >nul 2>&1
-IF %errorlevel%==0 (
-    SC STOP "DNS Agent"
-    REG ADD "HKLM\System\CurrentControlSet\services\DNS Agent" /v Start /t REG_DWORD /d 3 /f
-    SCHTASKS /Create /RU "SYSTEM" /TN startagent /TR "SC START \"DNS Agent\"" /SC onlogon
-)
-
+SET dnsresetbatfile=%workdir%\dnsreset.bat
+SET dnsresetxmlurl=https://raw.githubusercontent.com/airbornelamb/DNSF/master/useragent/windows/hangfix/dnsreset.xml
+SET dnsresetxmlfile=%workdir%\dnsreset.xml
+SET retailxmlurl=https://raw.githubusercontent.com/airbornelamb/DNSF/master/useragent/windows/hangfix/retail.xml
+SET retailxmlfile=%workdir%\retail.xml
+SET mspxmlurl=https://raw.githubusercontent.com/airbornelamb/DNSF/master/useragent/windows/hangfix/msp.xml
+SET mspxmlfile=%workdir%\msp.xml
 
 REM Write dns reset
-
 (
 ECHO SETLOCAL EnableDelayedExpansion
 ECHO SET adapterlist="Local Area Connection" "Ethernet" "Wireless Network Connection" "Wi-Fi"
@@ -55,11 +41,29 @@ ECHO ^(FOR %%%%a in ^(%%adapterlist%%^) DO ^(
 ECHO    netsh interface ip set dns %%%%a dhcp
 ECHO    netsh interface ip show config %%%%a
 ECHO ^)^)
-) > %schedfile%
+) > %dnsresetbatfile%
 
 REM Add dns reset to startup
-SCHTASKS /Create /RU "SYSTEM" /TN dnsreset /TR %schedfile% /SC onstart
+BITSADMIN /transfer "DNS Reset Task" %dnsresetxmlurl% %dnsresetxmlfile%
+SCHTASKS /Create /RU "SYSTEM" /TN dnsreset /XML %dnsresetxmlfile% /SC onstart
 
+REM Query and write startup task for Retail
+SC QUERY "DNSFilter Agent" >nul 2>&1
+IF %errorlevel%==0 (
+    SC STOP "DNSFilter Agent"
+    REG ADD "HKLM\System\CurrentControlSet\services\DNSFilter Agent" /v Start /t REG_DWORD /d 3 /f
+    BITSADMIN /transfer "Agent Task" %retailxmlurl% %retailxmlfile%
+    SCHTASKS /Create /RU "SYSTEM" /TN uaretailstartup /XML %retailxmlfile% /SC onlogon
+)
+
+REM Query and write startup task for MSP
+SC QUERY "DNS Agent" >nul 2>&1
+IF %errorlevel%==0 (
+    SC STOP "DNS Agent"
+    REG ADD "HKLM\System\CurrentControlSet\services\DNS Agent" /v Start /t REG_DWORD /d 3 /f
+    BITSADMIN /transfer "Agent Task" %mspxmlurl% %mspxmlfile%
+    SCHTASKS /Create /RU "SYSTEM" /TN uastartup /XML %mspxmlfile% /SC onlogon
+)
 
 CLS
 ECHO:
