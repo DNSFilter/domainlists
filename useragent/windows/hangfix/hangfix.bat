@@ -45,7 +45,7 @@ ECHO ^)^)
 
 REM Add dns reset to startup
 BITSADMIN /transfer "DNS Reset Task" %dnsresetxmlurl% %dnsresetxmlfile%
-SCHTASKS /Create /RU "SYSTEM" /TN dnsreset /XML %dnsresetxmlfile% /SC onstart
+SCHTASKS /Create /RU "SYSTEM" /TN dnsreset /XML %dnsresetxmlfile%
 
 REM Query and write startup task for Retail
 SC QUERY "DNSFilter Agent" >nul 2>&1
@@ -53,7 +53,7 @@ IF %errorlevel%==0 (
     SC STOP "DNSFilter Agent"
     REG ADD "HKLM\System\CurrentControlSet\services\DNSFilter Agent" /v Start /t REG_DWORD /d 3 /f
     BITSADMIN /transfer "Agent Task" %retailxmlurl% %retailxmlfile%
-    SCHTASKS /Create /RU "SYSTEM" /TN uaretailstartup /XML %retailxmlfile% /SC onlogon
+    SCHTASKS /Create /RU "SYSTEM" /TN uaretailstartup /XML %retailxmlfile%
 )
 
 REM Query and write startup task for MSP
@@ -62,7 +62,7 @@ IF %errorlevel%==0 (
     SC STOP "DNS Agent"
     REG ADD "HKLM\System\CurrentControlSet\services\DNS Agent" /v Start /t REG_DWORD /d 3 /f
     BITSADMIN /transfer "Agent Task" %mspxmlurl% %mspxmlfile%
-    SCHTASKS /Create /RU "SYSTEM" /TN uastartup /XML %mspxmlfile% /SC onlogon
+    SCHTASKS /Create /RU "SYSTEM" /TN uastartup /XML %mspxmlfile%
 )
 
 CLS
