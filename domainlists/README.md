@@ -12,7 +12,15 @@ https://github.com/speeddemon574/YouTube-Blacklist/blob/master/domainList.txt
 https://github.com/JamieFarrelly/Popular-Site-Subdomains
 
 
-Some helpful tools used in production of these lists:
+Tools used to source these lists:
+
+Using https://crt.sh to run a wildcard "%.domain.com" search for certificates which yielded some subdomains
+
+Running a VirusTotal search like https://www.virustotal.com/#/domain/youtube.com which yields observed subdomains
+
+https://www.bugcrowd.com/discovering-subdomains/
+
+Some helpful tools used to produce these lists:
 
 http://tools.dynamicdrive.com/listscrubber/
 
