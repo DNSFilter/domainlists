@@ -63,7 +63,7 @@ ECHO CHANGE LOCAL DNS
 ECHO ...............................................
 Echo:
 Echo:
-ECHO This shanges DNS resolver for common interfaces
+ECHO This changes DNS resolver for common interfaces
 Echo:
 Echo:
 ECHO WARNING: IF DNS Agent is installed
@@ -74,8 +74,8 @@ Echo:
 SET "dnschoice="
 SET /p dnschoice="[1] DHCP (default) or [2] DNSFilter or [3] Google: "
 	IF [%dnschoice%]==[1] GOTO DHCPSET
-	IF [%dnschoice%]==[2] SET dnschoice=103.247.36.36 & GOTO STATICSET 
-	IF [%dnschoice%]==[3] SET dnschoice=8.8.8.8 & GOTO STATICSET 
+	IF [%dnschoice%]==[2] SET dnschoice=103.247.36.36 & GOTO STATICSET
+	IF [%dnschoice%]==[3] SET dnschoice=8.8.8.8 & GOTO STATICSET
 	IF [%dnschoice%]==[] GOTO DHCPSET
 
 :DHCPSET
