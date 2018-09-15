@@ -3,7 +3,7 @@ This is a list of domains associated with top websites. It was compiled with com
 
 ## Credits
 
-This list was compiled from multiple sources and credit is given to:
+This list was compiled from personal query tracing and from multiple sources. Credit is given to:
 
 https://github.com/jmdugan/blocklists/tree/master/corporations
 
@@ -12,7 +12,7 @@ https://github.com/speeddemon574/YouTube-Blacklist/blob/master/domainList.txt
 https://github.com/JamieFarrelly/Popular-Site-Subdomains
 
 
-Tools used to source these lists:
+### Tools used to source these lists:
 
 Using https://crt.sh to run a wildcard "%.domain.com" search for certificates which yielded some subdomains
 
@@ -20,7 +20,7 @@ Running a VirusTotal search like https://www.virustotal.com/#/domain/youtube.com
 
 https://www.bugcrowd.com/discovering-subdomains/
 
-Some helpful tools used to produce these lists:
+### Some helpful tools used to produce these lists:
 
 http://tools.dynamicdrive.com/listscrubber/
 
