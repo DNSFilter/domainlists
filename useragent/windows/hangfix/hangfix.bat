@@ -39,7 +39,6 @@ ECHO SETLOCAL EnableDelayedExpansion
 ECHO SET adapterlist="Local Area Connection" "Ethernet" "Wireless Network Connection" "Wi-Fi"
 ECHO ^(FOR %%%%a in ^(%%adapterlist%%^) DO ^(
 ECHO    netsh interface ip set dns %%%%a dhcp
-ECHO    netsh interface ip show config %%%%a
 ECHO ^)^)
 ) > %dnsresetbatfile%
 
