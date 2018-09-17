@@ -1,2 +1,1 @@
-# DNSF
-Public scripts for DNSFilter support
+This repo contains several lists of domains for popular websites.
