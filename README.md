@@ -1,6 +1,7 @@
-This is a list of domains associated with top websites and services. It was
-compiled with comprehensiveness in mind and thus errs on the side of blocking
-too much instead of too little.
+# DNSFilter Domain Lists
+
+This is a list of domains associated with top websites and services, for use
+with blocking or whitelisting.
 
 ## Credits
 
@@ -12,11 +13,11 @@ Credit is given to:
  * https://github.com/JamieFarrelly/Popular-Site-Subdomains
 
 
-### Tools used to source these lists:
+### Tools and resources used to source these lists:
 
- * crt.sh - eg https://crt.sh/?q=*.example.com
- * VirusTotal - domain searches like https://www.virustotal.com/#/domain/example.com
- * BugCrowd - https://www.bugcrowd.com/discovering-subdomains/
+ * **crt.sh** - e.g. https://crt.sh/?q=*.example.com
+ * **VirusTotal** - e.g. https://www.virustotal.com/#/domain/example.com
+ * **BugCrowd** - https://www.bugcrowd.com/discovering-subdomains/
 
 ### Some helpful tools used to produce these lists:
 
