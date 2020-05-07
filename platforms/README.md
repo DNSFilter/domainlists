@@ -1,6 +1,6 @@
-## Service-specific domain lists
+## Platform-specific domain lists
 
-Each service listed here has two sets of files.
+Each platform listed here has two sets of files.
 
 Files with the suffix `.blacklist` contain a list of domains that should be blocked in order to prevent the service being used.
 
