@@ -1,6 +1,6 @@
 # DNSFilter Domain Lists
 
-This is a list of domains associated with top websites and services, for use
+This is a list of domains associated with top websites and platforms, for use
 with blocking or whitelisting.
 
 ## Credits
