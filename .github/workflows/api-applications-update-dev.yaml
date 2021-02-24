@@ -1,0 +1,28 @@
+name: api-applications-update-dev
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'applications/**'
+env:
+  BRANCH_NAME: develop
+jobs:
+  api-applications-update-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Ruby 2.7.1
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.1
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: develop
+      - name: Run script
+        working-directory: ${{ github.workspace }}/${{ env.BRANCH_NAME }}
+        env:
+          API_URL: ${{ secrets.API_URL_DEV }}
+          SECRET_TOKEN: ${{ secrets.APPLICATIONS_GITHUB_ACTIONS_SECRET_DEV }}
+        run: |
+          ruby ./.github/workflows/scripts/api-applications-update.rb
